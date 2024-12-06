@@ -166,7 +166,7 @@
                     <div class="dashboard-content">
                         <a href="profile.jsp">Profile</a>
                         <a href="appointments.jsp">Appointments</a>
-                        <a href="#">Help Center</a>
+                        <a href="Contact.jsp">Contact</a>
                         <a href="LogoutServlet">Logout</a>
                     </div>
                 </li>

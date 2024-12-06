@@ -5,8 +5,8 @@ import javax.mail.internet.*;
 public class EmailSender {
 
     public static boolean sendEmail(String recipient, String subject, String content) {
-        final String senderEmail = "2200033191kluniversity@gmail.com"; // replace with your email
-        final String appPassword = "vpjiffslahxmegqu"; // replace with your app password
+        final String senderEmail = "2200033191kluniversity@gmail.com"; // Replace with your email
+        final String appPassword = "kqykdzplggotjmif"; // Replace with your app password
 
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
@@ -29,7 +29,7 @@ public class EmailSender {
             message.setText(content);
 
             Transport.send(message);
-            System.out.println("Email sent successfully");
+            System.out.println("Email sent successfully.");
             return true;
         } catch (MessagingException e) {
             e.printStackTrace();
