@@ -5,7 +5,7 @@ import javax.mail.internet.*;
 public class EmailSender {
 
     public static boolean sendEmail(String recipient, String subject, String content) {
-        final String senderEmail = "2200033191kluniversity@gmail.com"; // Replace with your email
+        final String senderEmail = "2200033191@kluniversity@gmail.com"; // Replace with your email
         final String appPassword = "kqykdzplggotjmif"; // Replace with your app password
 
         Properties properties = new Properties();

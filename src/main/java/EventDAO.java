@@ -9,7 +9,7 @@ import java.util.List;
 public class EventDAO {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/student_health_wellness";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "MadasuPrasanna@10";
+    private static final String DB_PASSWORD = "Shab*1809";
 
     public List<Event> getAllEvents() throws Exception {
         List<Event> events = new ArrayList<>();

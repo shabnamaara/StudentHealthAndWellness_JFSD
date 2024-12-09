@@ -22,7 +22,7 @@
 
         /* Main container styling */
         .dashboard-container {
-            background-color: rgba(255, 255, 255, 0.85);
+            background-color: rgba(255, 255, 255, 0.70);
             border-radius: 15px;
             padding: 40px;
             margin: 50px auto;
@@ -133,7 +133,7 @@
 
         /* Adding subtle card shadow */
         .dashboard-container {
-            background-color: rgba(255, 255, 255, 1.05);
+            background-color: rgba(255, 255, 255, 0.3);
             border-radius: 15px;
             padding: 40px;
             margin: 50px auto;
@@ -157,6 +157,7 @@
                         <th>ID</th>
                         <th>Username</th>
                         <th>Email</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -164,7 +165,7 @@
                         // Database connection details
                         String dbURL = "jdbc:mysql://localhost:3306/student_health_wellness";
                         String dbUser = "root";
-                        String dbPassword = "MadasuPrasanna@10";
+                        String dbPassword = "Shab*1809";
                         
                         Connection conn = null;
                         PreparedStatement statement = null;
@@ -192,6 +193,16 @@
                         <td><%= id %></td>
                         <td><%= username %></td>
                         <td><%= email %></td>
+                        <td>
+                <!--  <form action="update_user.jsp" method="post" style="display:inline;">
+                    <input type="hidden" name="user_id" value="<%= id %>">
+                    <button type="submit" class="btn-back">Update</button>
+                </form>-->
+                <form action="delete_user.jsp" method="post" style="display:inline;">
+                    <input type="hidden" name="user_id" value="<%= id %>">
+                    <button type="submit" class="btn-back" style="background-color:#e74c3c;">Delete</button>
+                </form>
+            </td>
                     </tr>
                     <% 
                             }
@@ -215,7 +226,10 @@
                     %>
                 </tbody>
             </table>
-
+				<!-- Add User Button -->
+				<div style="text-align: right; margin-top: 20px;">
+				    <a href="add_user.jsp" class="btn-back">Add User</a>
+				</div>
             <a href="admin_dashboard.jsp" class="btn-back">Back to Dashboard</a>
         </div>
     </main>

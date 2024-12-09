@@ -25,7 +25,7 @@ public class ContactServlet extends HttpServlet {
         // Database connection details
         String jdbcURL = "jdbc:mysql://localhost:3306/student_health_wellness";
         String dbUser = "root";
-        String dbPassword = "MadasuPrasanna@10";
+        String dbPassword = "Shab*1809";
 
         Connection connection = null;
 

@@ -129,6 +129,7 @@
                 String title = "";
                 String eventDate = "";
                 String description = "";
+                String roomNo = "";
 
                 try {
                     // Load JDBC driver
@@ -138,7 +139,7 @@
                     conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
 
                     // SQL query to get event details
-                    String sql = "SELECT title, event_date, description FROM events WHERE id = ?";
+                    String sql = "SELECT title, event_date, description, room_no FROM events WHERE id = ?";
                     statement = conn.prepareStatement(sql);
                     statement.setInt(1, Integer.parseInt(eventId));
                     resultSet = statement.executeQuery();
@@ -147,6 +148,7 @@
                         title = resultSet.getString("title");
                         eventDate = resultSet.getDate("event_date").toString();
                         description = resultSet.getString("description");
+                        roomNo = resultSet.getString("room_no");
                     } else {
                         out.println("<p>Event not found.</p>");
                     }
@@ -177,6 +179,10 @@
                 <div class="form-group">
                     <label for="description">Description</label>
                     <textarea id="description" name="description" rows="4" required><%= description %></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="room_no">Room Number</label>
+                    <input type="text" id="room_no" name="room_no" value="<%= roomNo %>" required>
                 </div>
                 <button type="submit" class="btn-submit">Update Event</button>
             </form>

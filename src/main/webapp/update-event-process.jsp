@@ -81,15 +81,16 @@
                 String eventId = request.getParameter("id");
                 String title = request.getParameter("title");
                 String eventDate = request.getParameter("event_date");
+                String roomNo = request.getParameter("room_no");
                 String description = request.getParameter("description");
 
                 // Validate inputs
-                if (eventId == null || title == null || eventDate == null || description == null || title.isEmpty() || eventDate.isEmpty() || description.isEmpty()) {
+                if (eventId == null || title == null || eventDate == null || roomNo == null || description == null || title.isEmpty() || eventDate.isEmpty() || roomNo.isEmpty() || description.isEmpty()) {
                     out.println("<p>All fields are required.</p>");
                 } else {
                     String dbURL = "jdbc:mysql://localhost:3306/student_health_wellness";
                     String dbUser = "root";
-                    String dbPassword = "MadasuPrasanna@10";
+                    String dbPassword = "Shab*1809";
 
                     Connection conn = null;
                     PreparedStatement statement = null;
@@ -102,22 +103,23 @@
                         conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
 
                         // SQL query to update event
-                        String sql = "UPDATE events SET title = ?, event_date = ?, description = ? WHERE id = ?";
+                        String sql = "UPDATE events SET title = ?, event_date = ?, description = ?, room_no = ? WHERE id = ?";
                         statement = conn.prepareStatement(sql);
                         statement.setString(1, title);
                         statement.setDate(2, java.sql.Date.valueOf(eventDate));
                         statement.setString(3, description);
-                        statement.setInt(4, Integer.parseInt(eventId));
+                        statement.setString(4, roomNo);
+                        statement.setInt(5, Integer.parseInt(eventId));
 
                         int rowsAffected = statement.executeUpdate();
 
                         if (rowsAffected > 0) {
-                            out.println("<p>The event has been updated successfully.</p>");
+                            out.println("<p>Event updated successfully.</p>");
                         } else {
-                            out.println("<p>Failed to update the event.</p>");
+                            out.println("<p>Error updating event. Please try again.</p>");
                         }
                     } catch (Exception e) {
-                        out.println("<p>An error occurred while updating the event.</p>");
+                        out.println("<p>Error updating event.</p>");
                         e.printStackTrace();
                     } finally {
                         // Close resources

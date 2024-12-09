@@ -189,6 +189,7 @@
                         <th>ID</th>
                         <th>Title</th>
                         <th>Date</th>
+                        <th>Room No.</th>
                         <th>Description</th>
                         <th>Actions</th>
                     </tr>
@@ -198,7 +199,7 @@
                         // Database connection details
                         String dbURL = "jdbc:mysql://localhost:3306/student_health_wellness";
                         String dbUser = "root";
-                        String dbPassword = "MadasuPrasanna@10";
+                        String dbPassword = "Shab*1809";
                         
                         Connection conn = null;
                         PreparedStatement statement = null;
@@ -212,7 +213,7 @@
                             conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
 
                             // SQL query to retrieve all events
-                            String sql = "SELECT id, title, event_date, description FROM events";
+                            String sql = "SELECT id, title, event_date, room_no, description FROM events";
                             statement = conn.prepareStatement(sql);
 
                             resultSet = statement.executeQuery();
@@ -221,12 +222,14 @@
                                 int id = resultSet.getInt("id");
                                 String title = resultSet.getString("title");
                                 java.sql.Date eventDate = resultSet.getDate("event_date");
+                                String roomNo = resultSet.getString("room_no");
                                 String description = resultSet.getString("description");
                     %>
                     <tr>
                         <td><%= id %></td>
                         <td><%= title %></td>
                         <td><%= eventDate %></td>
+                        <td><%= roomNo %></td> 
                         <td><%= description %></td>
                         <td>
                             <form action="update-event.jsp" method="get" style="display:inline;">
@@ -243,7 +246,7 @@
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
-                            out.println("<tr><td colspan='5'>Error retrieving event data.</td></tr>");
+                            out.println("<tr><td colspan='6'>Error retrieving event data.</td></tr>");
                         } finally {
                             // Close resources
                             try {

@@ -93,6 +93,29 @@
             color: #0056b3;
             margin-bottom: 10px;
         }
+		.publications {
+		    display: grid;
+		    grid-template-columns: repeat(4, 1fr); /* Four columns */
+		    gap: 20px; /* Space between items */
+		    justify-items: center; /* Center items horizontally */
+		    margin: 20px 0; /* Add margin for spacing */
+		}
+		
+		.publications img {
+		    height: 200px; /* Set consistent height */
+		    width: 150px; /* Set consistent width */
+		    object-fit: cover; /* Maintain aspect ratio */
+		    border-radius: 8px; /* Optional: Add rounded corners */
+		    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add shadow for better appearance */
+		    transition: transform 0.2s ease; /* Smooth scaling effect on hover */
+		}
+		
+		.publications img:hover {
+		    transform: scale(1.05); /* Slight zoom effect on hover */
+		}
+
+        
+        
     </style>
 </head>
 <body>
@@ -234,6 +257,41 @@
                     <strong>COVID-19: Understanding Viral Transmission Among Students</strong><br>
                     Journal: Indian Journal of Medical Research, 2021
                 </li>
+                <h3><b>Books to refer:</b></h3> 
+                
+                <div class="publications">
+            <a href="https://www.freepsychotherapybooks.org/ebook/the-technique-of-psychotherapy">
+                <img id="book11" src="images/book11.png" alt="Book 1">
+            </a>
+            <a href="https://ati.dae.gov.in/ati12052021_6.pdf">
+                <img id="book12" src="images/book12.jpg" alt="Book 2">
+            </a>
+            <a href="https://fliphtml5.com/ovtbw/amdg/basic/">
+                <img id="book13" src="images/book13.jpg" alt="Book 3">
+            </a>
+            <a href="https://www.bennewman.net/wp-content/uploads/2019/10/3rd-Edition-YOUR-Mental-Toughness-Playbook.pdf">
+                <img id="book14" src="images/book14.png" alt="Book 4">
+            </a>
+            
+            
+            <a href="    https://www.docdroid.net/3wVw87h/this-naked-mind-pdf-final-annie-grace-1-pdf">
+                <img id="book15" src="images/book15.jpg" alt="Book 4">
+            </a>
+             <a href="       https://toaz.info/doc-view-3">
+                <img id="book16" src="images/book16.jpg" alt="Book 4">
+            </a>
+              
+             <a href=" https://icrrd.com/public/media/01-11-2020-205951Mindset%20by%20Carol%20S.%20Dweck.pdf">
+                <img id="book17" src="images/book17.png" alt="Book 4">
+            </a>
+             <a href=" https://www.indiatrust.org.in/pdf/white/Think%20and%20Grow%20Rich.pdf">
+                <img id="book17" src="images/book18.jpg" alt="Book 4">
+            </a>
+            
+            
+        </div>   
+                   
+                 
             </ul>
         </section>
     </div>

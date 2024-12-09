@@ -26,7 +26,7 @@ public class ProfileServlet extends HttpServlet {
         try {
             // Load the MySQL driver
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/student_health_wellness", "root", "MadasuPrasanna@10");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/student_health_wellness", "root", "Shab*1809");
 
             String query = "SELECT username, email FROM users WHERE username=?";
             PreparedStatement stmt = conn.prepareStatement(query);

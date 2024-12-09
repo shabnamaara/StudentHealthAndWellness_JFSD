@@ -78,7 +78,7 @@ public class SendPasswordReset extends HttpServlet {
 
     private String getEmailByUsernameOrEmail(String emailOrUsername) {
         String email = null;
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/student_health_wellness", "root", "MadasuPrasanna@10");
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/student_health_wellness", "root", "Shab*1809");
              PreparedStatement stmt = conn.prepareStatement("SELECT email FROM users WHERE username = ? OR email = ?")) {
             
             stmt.setString(1, emailOrUsername);
@@ -104,7 +104,7 @@ public class SendPasswordReset extends HttpServlet {
         PreparedStatement stmt = null;
 
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/student_health_wellness", "root", "MadasuPrasanna@10");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/student_health_wellness", "root", "Shab*1809");
 
             String query = "INSERT INTO password_reset_tokens (email, token, expiration) VALUES (?, ?, DATE_ADD(NOW(), INTERVAL 1 HOUR))";
             stmt = conn.prepareStatement(query);

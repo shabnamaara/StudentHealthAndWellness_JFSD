@@ -285,7 +285,7 @@
     <main>
         <div class="banner">
             <div class="overlay">
-                <h2>SHW Operating Hours: Monday - Friday: 8am - 4:30pm</h2>
+                <h2>SHW Operating Hours: Monday - Friday: 8am - 4:30pm , location : RND Block 5th floor</h2>
 
                 <!-- Button Container for Schedule and Emergency buttons -->
                 <div class="button-container">

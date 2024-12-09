@@ -32,7 +32,7 @@ public class ProcessPasswordReset extends HttpServlet {
 
         try {
             // Establish a connection to the database
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/student_health_wellness", "root", "MadasuPrasanna@10");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/student_health_wellness", "root", "Shab*1809");
 
             // Check if token exists and is still valid
             String tokenQuery = "SELECT email, expiration FROM password_reset_tokens WHERE token = ?";

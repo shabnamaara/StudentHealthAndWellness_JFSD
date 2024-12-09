@@ -16,7 +16,7 @@ public class VerifyResetTokenServlet extends HttpServlet {
     
     private static final String DB_URL = "jdbc:mysql://localhost:3306/student_health_wellness";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "MadasuPrasanna@10";  // Update with your database password
+    private static final String DB_PASSWORD = "Shab*1809";  // Update with your database password
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

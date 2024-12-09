@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Created - Admin Dashboard</title>
+    <title>User Updated - Admin Dashboard</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <style>
         body {
@@ -76,42 +76,61 @@
     
     <main>
         <div class="message-container">
-            <h2>Event Created</h2>
+            <h2>User Updated</h2>
             <% 
-                String title = request.getParameter("title");
-                String eventDate = request.getParameter("event_date");
-                String roomNo = request.getParameter("room_no");
-                String description = request.getParameter("description");
+                String userId = request.getParameter("id");
+                String username = request.getParameter("username");
+                String email = request.getParameter("email");
+                String role = request.getParameter("role");
 
-                if (title == null || eventDate == null || roomNo == null || description == null || title.isEmpty() || eventDate.isEmpty() || roomNo.isEmpty() || description.isEmpty()) {
+                // Validate inputs
+                if (userId == null || username == null || email == null || role == null || username.isEmpty() || email.isEmpty() || role.isEmpty()) {
                     out.println("<p>All fields are required.</p>");
                 } else {
                     String dbURL = "jdbc:mysql://localhost:3306/student_health_wellness";
                     String dbUser = "root";
                     String dbPassword = "Shab*1809";
 
-                    try (Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword)) {
-                        String sql = "INSERT INTO events (title, event_date, description, room_no) VALUES (?, ?, ?, ?)";
-                        try (PreparedStatement statement = conn.prepareStatement(sql)) {
-                            statement.setString(1, title);
-                            statement.setDate(2, java.sql.Date.valueOf(eventDate));
-                            statement.setString(3, description);
-                            statement.setString(4, roomNo);
+                    Connection conn = null;
+                    PreparedStatement statement = null;
 
-                            int rowsAffected = statement.executeUpdate();
-                            if (rowsAffected > 0) {
-                                out.println("<p>The event has been created successfully.</p>");
-                            } else {
-                                out.println("<p>Failed to create the event.</p>");
-                            }
+                    try {
+                        // Load JDBC driver
+                        Class.forName("com.mysql.cj.jdbc.Driver");
+
+                        // Connect to the database
+                        conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+
+                        // SQL query to update user details
+                        String sql = "UPDATE users SET username = ?, email = ?, role = ? WHERE id = ?";
+                        statement = conn.prepareStatement(sql);
+                        statement.setString(1, username);
+                        statement.setString(2, email);
+                        statement.setString(3, role);
+                        statement.setInt(4, Integer.parseInt(userId));
+
+                        int rowsAffected = statement.executeUpdate();
+
+                        if (rowsAffected > 0) {
+                            out.println("<p>The user has been updated successfully.</p>");
+                        } else {
+                            out.println("<p>Failed to update the user.</p>");
                         }
                     } catch (Exception e) {
-                        out.println("<p>An error occurred while creating the event.</p>");
+                        out.println("<p>An error occurred while updating the user.</p>");
                         e.printStackTrace();
+                    } finally {
+                        // Close resources
+                        try {
+                            if (statement != null) statement.close();
+                            if (conn != null) conn.close();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             %>
-            <a href="admin-manage-events.jsp" class="btn-back">Back to Event List</a>
+            <a href="admin-manage-users.jsp" class="btn-back">Back to User List</a>
         </div>
     </main>
 

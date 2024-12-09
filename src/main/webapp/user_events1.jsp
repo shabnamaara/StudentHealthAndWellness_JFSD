@@ -250,6 +250,37 @@
                 transform: translate(-50%, -50%);
             }
         }
+        .video-section h2 {
+            margin-bottom: 30px;
+            font-size: 28px;
+            color: #001a57;
+        }
+
+        .video-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .video-item {
+            flex: 1 1 calc(50% - 40px);
+            max-width: 600px;
+        }
+
+        .video-item iframe {
+            width: 100%;
+            height: 350px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-description {
+            font-size: 16px;
+            color: #333;
+            margin-top: 10px;
+        }
     </style>
     <script>
         function openModal() {
@@ -279,7 +310,7 @@
             <%
                 String url = "jdbc:mysql://localhost:3306/student_health_wellness";
                 String username = "root";
-                String password = "MadasuPrasanna@10";
+                String password = "Shab*1809";
 
                 Connection conn = null;
                 Statement stmt = null;
@@ -290,7 +321,7 @@
                     conn = DriverManager.getConnection(url, username, password);
                     stmt = conn.createStatement();
 
-                    String sql = "SELECT id, title, event_date, description FROM events WHERE event_date >= CURDATE()"; // Removed detailed_description
+                    String sql = "SELECT id, title, event_date, description,room_no FROM events WHERE event_date >= CURDATE()"; // Removed detailed_description
                     rs = stmt.executeQuery(sql);
 
                     while (rs.next()) {
@@ -298,12 +329,14 @@
                         String title = rs.getString("title");
                         String eventDate = new SimpleDateFormat("dd MMM yyyy").format(rs.getDate("event_date"));
                         String description = rs.getString("description");
+                        String roomNo = rs.getString("room_no");
 
                         out.println("<div class='event-card'>");
                         out.println("<img src='images/health-wellness.png' alt='" + title + "'>");
                         out.println("<div class='event-details'>");
                         out.println("<h3 class='event-title'>" + title + "</h3>");
                         out.println("<p class='event-date'>" + eventDate + "</p>");
+                        out.println("<p class='event-room'>Room: " + roomNo + "</p>");
                         //out.println("<p class='event-description'>" + description + "</p>");
                         out.println("<a href='#' class='learn-more-btn' onclick=\"openTransparentBox('" + description + "')\">Learn More</a>");
                         out.println("<a href='#' class='apply-btn' onclick='openModal()'>Apply Now</a>");
@@ -338,6 +371,23 @@
                     <input type="email" id="email" name="email" required>
                     <input type="submit" value="Submit Application">
                 </form>
+            </div>
+        </div>
+    </div>
+    <div class="video-section">
+        <h2>Related Videos</h2>
+        <div class="video-list">
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/rXsPpYXBKWo" allowfullscreen></iframe>
+                <p class="video-description">Video about managing mental health and well-being.</p>
+            </div>
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/QhKdbBCLWzo" allowfullscreen></iframe>
+                <p class="video-description">Tips for boosting overall wellness and physical health.</p>
+            </div>
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/Aa0mVQgoWLg" allowfullscreen></iframe>
+                <p class="video-description">Insightful discussion on the importance of regular exercise.</p>
             </div>
         </div>
     </div>

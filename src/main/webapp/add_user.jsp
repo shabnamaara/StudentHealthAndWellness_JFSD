@@ -1,11 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.sql.Connection, java.sql.DriverManager, java.sql.PreparedStatement" %>
+<%@ page import="java.sql.*" %>
+<%! 
+    public void addUser(String username, String email, String password) {
+        String dbURL = "jdbc:mysql://localhost:3306/student_health_wellness";
+        String dbUser = "root";
+        String dbPassword = "Shab*1809";
+
+        try (Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPassword);
+             PreparedStatement ps = conn.prepareStatement("INSERT INTO users (username, email, password) VALUES (?, ?, ?)")) {
+            ps.setString(1, username);
+            ps.setString(2, email);
+            ps.setString(3, password);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Event - Admin Dashboard</title>
+    <title>Add User - Admin Dashboard</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <style>
         body {
@@ -47,15 +63,11 @@
             margin-bottom: 5px;
         }
 
-        .form-group input, .form-group textarea {
+        .form-group input {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
-        }
-
-        .form-group input[type="date"] {
-            font-size: 16px;
         }
 
         .btn-submit {
@@ -70,24 +82,6 @@
         }
 
         .btn-submit:hover {
-            background-color: #004080;
-        }
-
-        .btn-back {
-            background-color: #001a57;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 20px;
-            text-decoration: none;
-            display: inline-block;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-back:hover {
             background-color: #004080;
         }
 
@@ -107,34 +101,31 @@
     </style>
 </head>
 <body>
-    <header>
-        
-    </header>
-    
     <main>
         <div class="form-container">
-            <h2>Create New Event</h2>
-            <form action="create-event-process.jsp" method="post">
+            <h2>Add New User</h2>
+            <form method="post">
                 <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" id="title" name="title" required>
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
                 </div>
                 <div class="form-group">
-                    <label for="event_date">Event Date</label>
-                    <input type="date" id="event_date" name="event_date" required>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
-                    <label for="room_no">Room Number</label>
-                    <input type="text" id="room_no" name="room_no" required>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
                 </div>
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea id="description" name="description" rows="4" required></textarea>
-                </div>
-                <button type="submit" class="btn-submit">Create Event</button>
+                <button type="submit" class="btn-submit">Add User</button>
             </form>
-            <a href="admin-manage-events.jsp" class="btn-back">Back to Event List</a>
         </div>
+        <% 
+            if (request.getMethod().equals("POST")) {
+                addUser(request.getParameter("username"), request.getParameter("email"), request.getParameter("password"));
+                response.sendRedirect("admin-view-users.jsp");
+            }
+        %>
     </main>
 
     <footer>
